@@ -85,7 +85,7 @@ def xcode(code1,code2,ncol,nrow):
 def composite(code1,code2,ncol,nrow):
   imax=ncol*1125
   jmax=nrow*750
-  image=np.zeros((jmax,imax))
+  image=np.zeros((jmax,imax),dtype=np.float32)
   fname1='FG-GML-'
   fname2='-dem10b-20090201.xml'
   x2=code1 % 100

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # cd /Volumes/Transcend/KibanDEM
+# extract_utm.py utm_template.txt 
 
 import sys
 import cv2
@@ -53,7 +54,7 @@ print old.dtype,old.shape
 codex=kd.mcode(e_lat,s_lon)
 ut.lat0,ut.lon0=kd.rcode(codex[0],codex[1])
 
-oldx=cv2.resize(old,(600,600))
+#oldx=cv2.resize(old,(600,600))
 #cv2.imshow('old',oldx/np.max(oldx))
 #cv2.waitKey(0)
 
@@ -67,6 +68,10 @@ newx=cv2.resize(new,(600,600))
 #cv2.waitKey(0)
 
 ut.write_tif('new_utm.tif',new,1)
+
+newx=255.0*new/np.max(new)
+newx[np.where(newx < 0.0)]=0.0
+ut.write_tifB('new_utmB.tif',newx.astype(np.uint8),1)
 
 #cv2.destroyAllWindows()
 

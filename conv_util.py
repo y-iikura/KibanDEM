@@ -123,6 +123,29 @@ def write_tif(dname,data,select):
     x_pixels,
     y_pixels,
     1,
+    gdal.GDT_Float32, )
+  dataset.SetGeoTransform((
+    xs,
+    dx,
+    0, 
+    ye,
+    0,
+    -dy))  
+  #dataset.SetProjection(wkt_projection)
+  if select==1: dataset.SetProjection(wkt)
+  else: dataset.SetProjection(wkt2)
+  dataset.GetRasterBand(1).WriteArray(data)
+  dataset.FlushCache()
+
+def write_tifB(dname,data,select):
+  driver = gdal.GetDriverByName('GTiff')
+  #wkt_projection=proj.ExportToWkt()
+  y_pixels,x_pixels=data.shape
+  dataset = driver.Create(
+    dname,
+    x_pixels,
+    y_pixels,
+    1,
     gdal.GDT_Byte, )
   dataset.SetGeoTransform((
     xs,

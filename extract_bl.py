@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # cd /Volumes/Transcend/KibanDEM
+# extract_bl.py bl_template.txt 
 
 import sys
 import cv2
@@ -70,6 +71,10 @@ ut.dx=dlon
 ut.ye=e_lat
 ut.dy=dlat
 ut.write_tif('new_bl.tif',new.astype(np.float32),2)
+
+newx=255.0*new/np.max(new)
+newx[np.where(newx < 0.0)]=0.0
+ut.write_tifB('new_blB.tif',newx.astype(np.uint8),2)
 
 cv2.destroyAllWindows()
 
