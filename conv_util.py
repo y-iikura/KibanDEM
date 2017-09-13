@@ -168,8 +168,8 @@ def convert(image,imax,jmax):
     for i in range(imax):
       x=xs+i*dx
       temp=utm2bl([x,y])
-      ii=np.round((temp[1]-lon0)/dlon)
-      jj=np.round((lat0-temp[0])/dlat)
+      ii=int(np.round((temp[1]-lon0)/dlon))
+      jj=int(np.round((lat0-temp[0])/dlat))
       data[j,i]=image[jj,ii]
   return data
 
@@ -181,8 +181,8 @@ def convert2(image,imax,jmax):
     for i in range(imax):
       x=xs+i*dx
       temp=utm2bl([x,y])
-      ii=np.round((temp[1]-lon0)/dlon)
-      jj=np.round((lat0-temp[0])/dlat)
+      ii=int(np.round((temp[1]-lon0)/dlon))
+      jj=int(np.round((lat0-temp[0])/dlat))
       test=image[(jj-1):(jj+2),(ii-1):(ii+2)]
       count=np.zeros(11)
       for k in range(9) :

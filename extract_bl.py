@@ -10,6 +10,9 @@ from scipy import interpolate
 import conv_util as ut
 import kdem_util as kd
 
+kd.fname1='FG-GML-'
+kd.fname2='-dem10b-20161001.xml'
+
 param=sys.argv
 if len(param)!=2:
     print 'Usage: extract_bl.py file_name'
@@ -76,6 +79,6 @@ newx=255.0*new/np.max(new)
 newx[np.where(newx < 0.0)]=0.0
 ut.write_tifB('new_blB.tif',newx.astype(np.uint8),2)
 
-cv2.destroyAllWindows()
+#cv2.destroyAllWindows()
 
 exit()

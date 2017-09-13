@@ -10,6 +10,9 @@ from scipy import interpolate
 import conv_util as ut
 import kdem_util as kd
 
+kd.fname1='FG-GML-'
+kd.fname2='-dem10b-20161001.xml'
+
 param=sys.argv
 if len(param)!=2:
     print 'Usage: extract_utm.py file_name'
